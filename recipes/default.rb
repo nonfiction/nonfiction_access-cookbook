@@ -18,4 +18,32 @@
 # limitations under the License.
 #
 
-# Install/configure something here
+# Add nonfiction users.
+node['users'].each do |u|
+  user u do
+    supports :manage_home => true # rubocop:disable HashSyntax
+    home "/home/#{u}"
+    action :create
+  end
+end
+
+# Create ssh directories.
+node['users'].each do |u|
+  directory "/home/#{u}/.ssh" do
+    user "#{u}"
+    group "#{u}"
+    mode 00700
+    action :create
+  end
+end
+
+# Add our current keys.
+node['users'].each do |u|
+  remote_file "/home/#{u}/.ssh/authorized_keys" do
+    source 'https://raw.github.com/nonfiction/keys/master/keys'
+    owner "#{u}"
+    group "#{u}"
+    mode 00600
+    action :create
+  end
+end

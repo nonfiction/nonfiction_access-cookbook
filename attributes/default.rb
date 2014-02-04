@@ -18,4 +18,5 @@
 # limitations under the License.
 #
 
-# Set meaningful node attributes here
+# Users.
+default['users'] = %w{ nonfiction }
