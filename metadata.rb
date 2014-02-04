@@ -6,3 +6,5 @@ license          'Apache 2.0'
 description      'Installs/configures access for nonfiction including ssh keys'
 version          '0.1.0'
 recipe           'nonfiction_access::default', 'Installs/configures access for nonfiction including ssh keys'
+
+depends 'sudo'

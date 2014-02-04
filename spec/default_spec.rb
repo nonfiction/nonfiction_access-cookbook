@@ -8,7 +8,7 @@ describe 'nonfiction_access::default' do
   it 'creates a nonfiction user' do
     expect(chef_run).to create_user('nonfiction')
   end
-  
+
   # Adds /home/nonfiction/.ssh/
   it 'creates the nonfiction .ssh directory' do
     expect(chef_run).to create_directory('/home/nonfiction/.ssh')

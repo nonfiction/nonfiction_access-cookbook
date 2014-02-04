@@ -30,8 +30,8 @@ end
 # Create ssh directories.
 node['users'].each do |u|
   directory "/home/#{u}/.ssh" do
-    user "#{u}"
-    group "#{u}"
+    user u
+    group u
     mode 00700
     action :create
   end
@@ -41,9 +41,17 @@ end
 node['users'].each do |u|
   remote_file "/home/#{u}/.ssh/authorized_keys" do
     source 'https://raw.github.com/nonfiction/keys/master/keys'
-    owner "#{u}"
-    group "#{u}"
+    owner u
+    group u
     mode 00600
     action :create
+  end
+end
+
+# Add sudoers files to /etc/sudoers.d/
+node['users'].each do |user|
+  sudo user do
+    user      user
+    nopasswd  true
   end
 end
