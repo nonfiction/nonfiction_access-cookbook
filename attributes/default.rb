@@ -19,4 +19,4 @@
 #
 
 # Users.
-default['users'] = %w{ nonfiction darron jon jody andy }
+default['users'] = %w{ nonfiction }
