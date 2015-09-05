@@ -55,3 +55,8 @@ node['users'].each do |user|
     nopasswd  true
   end
 end
+
+group 'nonfiction' do
+  members node['users']
+  action :create
+end
