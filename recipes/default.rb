@@ -23,6 +23,7 @@ node['users'].each do |u|
   user u do
     supports :manage_home => true # rubocop:disable HashSyntax
     home "/home/#{u}"
+    shell '/bin/bash'
     action :create
   end
 end
